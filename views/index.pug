@@ -1,4 +1,20 @@
 extends layouts/main
 
 block content 
-  p #{message}
+  .container
+    h1.app-title Cat Search
+    .select-container
+      .select-wrapper
+        button#dropdown-button.dropdown-button 請選擇品種
+        #options.hidden.multi-select-dropdown__options
+          .multi-select-dropdown__options__option
+            input(type="checkbox")
+            label.multi-select-dropdown__label 選項1 
+          .multi-select-dropdown__options__option
+            input(type="checkbox")
+            label.multi-select-dropdown__label 選項2 
+      .select-wrapper
+        select#orderSelect.order-select(name="orderSelect")
+          option(value="DESC") 由新到舊
+          option(value="ASC") 由舊到新
+          option(value="RAND") 隨機
