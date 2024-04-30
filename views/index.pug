@@ -5,7 +5,7 @@ block content
     h1.app-title Cat Search
     .select-container
       .select-wrapper
-        button#dropdown-button.dropdown-button 請選擇品種
+        button.dropdown-button#dropdown-button 請選擇品種
         #options.hidden.multi-select-dropdown__options
           .multi-select-dropdown__options__option
             input(type="checkbox")
@@ -14,7 +14,7 @@ block content
             input(type="checkbox")
             label.multi-select-dropdown__label 選項2 
       .select-wrapper
-        select#orderSelect.order-select(name="orderSelect")
+        select.order-select#orderSelect(name="orderSelect")
           option(value="DESC") 由新到舊
           option(value="ASC") 由舊到新
           option(value="RAND") 隨機
@@ -32,3 +32,39 @@ block content
           img.card__img(src="https://cdn2.thecatapi.com/images/7pCnjXd47.jpg")
           p York Chocolate
     #load-more.load-more-button Load more...
+  #drawer.drawer.open
+    img.drawer__img#drawer-image(src="https://cdn2.thecatapi.com/images/7pCnjXd47.jpg")
+    .drawer__name-origin
+      h3.drawer__name-origin__name#drawer-breed-name British Shorthair
+      .drawer__name-origin__origin
+        img(src="assets/location_icon.svg", alt="")
+        span United Kingdom
+    .drawer__horizontal-sep
+    .drawer__age-weight
+      .drawer__age-weight__data
+        p.drawer__age-weight__number#drawer-lifespan 12-17
+        p.drawer__age-weight__label 壽命
+      .drawer__age-weight__vertical-sep
+      .drawer__age-weight__data
+        p.drawer__age-weight__number#drawer-lifespan 5-9
+        p.drawer__age-weight__label 公斤
+    .drawer__horizontal-sep
+    .drawer__personality
+      p.drawer__personality__title 性格
+      #temperament.drawer__personality__tags
+        span.drawer__personality__tags__tag 親人
+        span.drawer__personality__tags__tag 友善
+        span.drawer__personality__tags__tag 活潑
+    #drawer-stats.drawer__stats
+      .drawer__stats__item
+        p.drawer__stats__item__title#intelligence 智力
+        .drawer__stats__item__bar
+          .drawer__stats__item__bar__fill
+      .drawer__stats__item
+        p.drawer__stats__item__title#intelligence 親密度
+        .drawer__stats__item__bar
+          .drawer__stats__item__bar__fill
+      .drawer__stats__item
+        p.drawer__stats__item__title#intelligence 活力
+        .drawer__stats__item__bar
+          .drawer__stats__item__bar__fill
