@@ -2,8 +2,11 @@ import { fetchCats, fetchBreeds } from './api.js';
 import {
   addCloseDropdownListener,
   addDropDownListener,
+  addLoadMoreButtonListener,
   addSelectOrderListener,
   clearImages,
+  disableLoadMoreButton,
+  enableLoadMoreButton,
   renderCats,
   renderOptions,
 } from './dom.js';
@@ -20,9 +23,16 @@ async function loadCats(breedIds = [], limit, order, page) {
   catList.push(...list);
 
   renderCats(list);
+  if (list.length < limit) {
+    // no more cats
+    disableLoadMoreButton();
+    return false;
+  }
+
+  return true;
 }
 
-function handleBreedOptionChange(e) {
+async function handleBreedOptionChange(e) {
   const changedOption = e.target;
   if (changedOption.checked) {
     selectedOptions.push(changedOption.value);
@@ -32,7 +42,12 @@ function handleBreedOptionChange(e) {
     );
   }
   clearImages();
-  loadCats(selectedOptions, limit, order, page);
+  enableLoadMoreButton();
+  page = 1;
+  const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+  if (hasNextPage) {
+    page++;
+  }
 }
 
 async function loadBreedOptions() {
@@ -43,16 +58,30 @@ async function loadBreedOptions() {
 function addListeners() {
   addDropDownListener();
   addCloseDropdownListener();
-  addSelectOrderListener((e) => {
+  addSelectOrderListener(async (e) => {
     order = e.target.value;
     clearImages();
-    loadCats(selectedOptions, limit, order, page);
+    enableLoadMoreButton();
+    page = 1;
+    const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+    if (hasNextPage) {
+      page++;
+    }
+  });
+
+  addLoadMoreButtonListener(async () => {
+    const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+    if (hasNextPage) {
+      page++;
+    }
   });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
   loadBreedOptions();
-  await loadCats(selectedOptions, limit, order, page);
-
+  const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+  if (hasNextPage) {
+    page++;
+  }
   addListeners();
 });

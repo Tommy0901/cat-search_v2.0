@@ -60,3 +60,18 @@ export function addSelectOrderListener(handler) {
   const orderSelect = document.getElementById('order-select');
   orderSelect.addEventListener('change', handler);
 }
+
+export function addLoadMoreButtonListener(handler) {
+  const loadMoreButton = document.getElementById('load-more');
+  loadMoreButton.addEventListener('click', handler);
+}
+
+export function disableLoadMoreButton() {
+  const loadMoreButton = document.getElementById('load-more');
+  loadMoreButton.disabled = true;
+}
+
+export function enableLoadMoreButton() {
+  const loadMoreButton = document.getElementById('load-more');
+  loadMoreButton.disabled = false;
+}
