@@ -2,6 +2,7 @@ import { fetchCats, fetchBreeds } from './api.js';
 import {
   addCloseDropdownListener,
   addDropDownListener,
+  addSelectOrderListener,
   clearImages,
   renderCats,
   renderOptions,
@@ -42,6 +43,11 @@ async function loadBreedOptions() {
 function addListeners() {
   addDropDownListener();
   addCloseDropdownListener();
+  addSelectOrderListener((e) => {
+    order = e.target.value;
+    clearImages();
+    loadCats(selectedOptions, limit, order, page);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
