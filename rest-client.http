@@ -1,0 +1,18 @@
+@api_url = https://api.thecatapi.com/v1/images/search
+@api_key = 
+
+### Query Parameters (more detail: https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t)
+@limit = 
+@page = 
+@order = 
+@has_breeds = 
+@breed_ids = 
+@category_ids = 
+@sub_id = 
+
+
+### Send Request Without API Key
+GET {{api_url}}
+
+### Send Request With API Key and Other Query Parameters
+GET {{api_url}}?api_key={{api_key}}&limit={{limit}}&page={{page}}&order={{order}}&has_breeds={{has_breeds}}&breed_ids={{breed_ids}}&category_ids={{category_ids}}&sub_id={{sub_id}}
