@@ -11,7 +11,7 @@ export async function fetchCats(breedIds = [], limit, order, page) {
   url.searchParams.append('page', page);
 
   if (breedIds.length > 0) {
-    url.searchParams.append('breed_id', breedIds.join(','));
+    url.searchParams.append('breed_ids', breedIds.join(','));
   }
 
   try {
@@ -19,4 +19,8 @@ export async function fetchCats(breedIds = [], limit, order, page) {
   } catch (err) {
     console.error("What's going on...", err);
   }
+}
+
+export async function fetchBreeds() {
+  return (await fetch('https://api.thecatapi.com/v1/breeds')).json();
 }
