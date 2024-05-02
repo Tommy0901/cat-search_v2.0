@@ -1,4 +1,9 @@
-import { createBreedOption, createCard } from './createElement.js';
+import {
+  createBreedOption,
+  createCard,
+  createDrawerStatsItem,
+  createTempItem,
+} from './createElement.js';
 
 export function renderCats(catList) {
   const columns = [
@@ -10,8 +15,90 @@ export function renderCats(catList) {
     const col = i % columns.length;
     const item = catList[i];
     const card = createCard(item);
+    card.addEventListener('click', (e) => {
+      setDrawerContent(item);
+      openDrawer();
+    });
     columns[col].appendChild(card);
   }
+}
+
+export function setDrawerContent(item) {
+  const drawerImg = document.getElementById('drawer-image');
+  drawerImg.src = item.url;
+  const breedName = document.getElementById('drawer-breed-name');
+  breedName.innerHTML = item.breeds[0].name;
+  const origin = document.getElementById('drawer-origin-text');
+  origin.innerHTML = item.breeds[0].origin;
+  const lifeSpan = document.getElementById('drawer-lifespan');
+  lifeSpan.innerHTML = item.breeds[0].weight.metric;
+  const temperament = document.getElementById('temperament');
+  temperament.innerHTML = '';
+  const temperamentList = item.breeds[0].temperament.split(', ');
+  for (const temp of temperamentList) {
+    const tempItem = createTempItem(temp);
+    temperament.appendChild(tempItem);
+  }
+
+  const scoreListings = [
+    {
+      key: 'intelligence',
+      displayName: '智力',
+    },
+    {
+      key: 'affection_level',
+      displayName: '親密度',
+    },
+    {
+      key: 'energy_level',
+      displayName: '活力',
+    },
+    {
+      key: 'child_friendly',
+      displayName: '兒童友善',
+    },
+    {
+      key: 'dog_friendly',
+      displayName: '親近狗狗',
+    },
+    {
+      key: 'indoor',
+      displayName: '喜歡在家',
+    },
+    {
+      key: 'health_issues',
+      displayName: '遺傳疾病',
+    },
+    {
+      key: 'shedding_level',
+      displayName: '掉毛量',
+    },
+    {
+      key: 'social_needs',
+      displayName: '社交需求',
+    },
+    {
+      key: 'stranger_friendly',
+      displayName: '陌生人友善',
+    },
+    {
+      key: 'rare',
+      displayName: '稀有度',
+    },
+  ];
+
+  const drawerStats = document.getElementById('drawer-stats');
+  drawerStats.innerHTML = '';
+
+  for (const { key, displayName } of scoreListings) {
+    const statsItem = createDrawerStatsItem(displayName, item.breeds[0][key]);
+    drawerStats.appendChild(statsItem);
+  }
+}
+
+export function openDrawer() {
+  const drawer = document.getElementById('drawer');
+  drawer.classList.add('open');
 }
 
 export function addDropDownListener() {
@@ -74,4 +161,16 @@ export function disableLoadMoreButton() {
 export function enableLoadMoreButton() {
   const loadMoreButton = document.getElementById('load-more');
   loadMoreButton.disabled = false;
+}
+
+export function addCloseDrawerListener() {
+  document.addEventListener('click', (e) => {
+    const drawer = document.getElementById('drawer');
+    const isClickedInsideCard = e.target.closest('.card');
+    const isClickedInsideDrawer = drawer.contains(e.target);
+
+    if (!isClickedInsideCard && !isClickedInsideDrawer) {
+      drawer.classList.remove('open');
+    }
+  });
 }

@@ -1,5 +1,6 @@
 import { fetchCats, fetchBreeds } from './api.js';
 import {
+  addCloseDrawerListener,
   addCloseDropdownListener,
   addDropDownListener,
   addLoadMoreButtonListener,
@@ -57,6 +58,7 @@ async function loadBreedOptions() {
 
 function addListeners() {
   addDropDownListener();
+  addCloseDrawerListener();
   addCloseDropdownListener();
   addSelectOrderListener(async (e) => {
     order = e.target.value;
