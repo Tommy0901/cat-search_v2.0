@@ -30,8 +30,10 @@ export function setDrawerContent(item) {
   breedName.innerHTML = item.breeds[0].name;
   const origin = document.getElementById('drawer-origin-text');
   origin.innerHTML = item.breeds[0].origin;
+  const weight = document.getElementById('drawer-weight');
+  weight.innerHTML = item.breeds[0].weight.metric;
   const lifeSpan = document.getElementById('drawer-lifespan');
-  lifeSpan.innerHTML = item.breeds[0].weight.metric;
+  lifeSpan.innerHTML = item.breeds[0].life_span;
   const temperament = document.getElementById('temperament');
   temperament.innerHTML = '';
   const temperamentList = item.breeds[0].temperament.split(', ');

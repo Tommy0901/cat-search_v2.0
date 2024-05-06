@@ -20,17 +20,20 @@ block content
           option(value="RAND") 隨機
     #image-grid.image-grid
       #col1.col
-        //- .card
-        //-   img.card__img(src="https://cdn2.thecatapi.com/images/0SxW2SQ_S.jpg")
-        //-   p York Chocolate
+        //- each cat in col1
+        //-   .card
+        //-     img.card__img(src= cat.url)
+        //-     p= cat.breeds[0].name
       #col2.col
-        //- .card
-        //-   img.card__img(src="https://cdn2.thecatapi.com/images/7_rjG2-pc.jpg")
-        //-   p York Chocolate
+        //- each cat in col2
+        //-   .card
+        //-     img.card__img(src= cat.url)
+        //-     p= cat.breeds[0].name
       #col3.col
-        //- .card
-        //-   img.card__img(src="https://cdn2.thecatapi.com/images/7pCnjXd47.jpg")
-        //-   p York Chocolate
+        //- each cat in col3
+        //-   .card
+        //-     img.card__img(src= cat.url)
+        //-     p= cat.breeds[0].name
     button.load-more-button#load-more  Load more...
   #drawer.drawer
     img.drawer__img#drawer-image(src="https://cdn2.thecatapi.com/images/7pCnjXd47.jpg")
@@ -42,12 +45,12 @@ block content
     .drawer__horizontal-sep
     .drawer__age-weight
       .drawer__age-weight__data
-        p.drawer__age-weight__number#drawer-lifespan 12-17
-        p.drawer__age-weight__label 壽命
+        p.drawer__age-weight__number#drawer-weight 5-9
+        p.drawer__age-weight__label 公斤
       .drawer__age-weight__vertical-sep
       .drawer__age-weight__data
-        p.drawer__age-weight__number#drawer-lifespan 5-9
-        p.drawer__age-weight__label 公斤
+        p.drawer__age-weight__number#drawer-lifespan 12-17
+        p.drawer__age-weight__label 壽命
     .drawer__horizontal-sep
     .drawer__personality
       p.drawer__personality__title 性格

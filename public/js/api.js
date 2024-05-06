@@ -1,10 +1,6 @@
-const apiKey =
-  'live_lRc93veAIcN7GuJa1WuY4UjeQ6eNK2omdkK85AHOcV8p2W8xJJuY2vGGstUtg6Ox';
-
 export async function fetchCats(breedIds = [], limit, order, page) {
-  const url = new URL('https://api.thecatapi.com/v1/images/search');
+  const url = new URL('http://localhost:3000/catList');
 
-  url.searchParams.append('api_key', apiKey);
   url.searchParams.append('has_breeds', 1);
   url.searchParams.append('limit', limit);
   url.searchParams.append('order', order);
@@ -22,5 +18,9 @@ export async function fetchCats(breedIds = [], limit, order, page) {
 }
 
 export async function fetchBreeds() {
-  return (await fetch('https://api.thecatapi.com/v1/breeds')).json();
+  try {
+    return (await fetch('http://localhost:3000/breedList')).json();
+  } catch (err) {
+    console.error('Oops! Something messed up...', err);
+  }
 }
