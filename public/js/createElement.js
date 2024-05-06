@@ -7,7 +7,7 @@ export function createCard(item) {
   img.className = 'card__img';
   // create breeds text
   const breeds = document.createElement('p');
-  breeds.innerHTML = item.breeds.map((breed) => breed.name).join(', ');
+  breeds.innerHTML = item.name;
 
   card.appendChild(img);
   card.appendChild(breeds);

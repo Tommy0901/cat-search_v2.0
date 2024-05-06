@@ -27,16 +27,16 @@ export function setDrawerContent(item) {
   const drawerImg = document.getElementById('drawer-image');
   drawerImg.src = item.url;
   const breedName = document.getElementById('drawer-breed-name');
-  breedName.innerHTML = item.breeds[0].name;
+  breedName.innerHTML = item.name;
   const origin = document.getElementById('drawer-origin-text');
-  origin.innerHTML = item.breeds[0].origin;
+  origin.innerHTML = item.origin;
   const weight = document.getElementById('drawer-weight');
-  weight.innerHTML = item.breeds[0].weight.metric;
+  weight.innerHTML = item.weight;
   const lifeSpan = document.getElementById('drawer-lifespan');
-  lifeSpan.innerHTML = item.breeds[0].life_span;
+  lifeSpan.innerHTML = item.lifeSpan;
   const temperament = document.getElementById('temperament');
   temperament.innerHTML = '';
-  const temperamentList = item.breeds[0].temperament.split(', ');
+  const temperamentList = item.temperamentList;
   for (const temp of temperamentList) {
     const tempItem = createTempItem(temp);
     temperament.appendChild(tempItem);
@@ -93,7 +93,7 @@ export function setDrawerContent(item) {
   drawerStats.innerHTML = '';
 
   for (const { key, displayName } of scoreListings) {
-    const statsItem = createDrawerStatsItem(displayName, item.breeds[0][key]);
+    const statsItem = createDrawerStatsItem(displayName, item[key]);
     drawerStats.appendChild(statsItem);
   }
 }

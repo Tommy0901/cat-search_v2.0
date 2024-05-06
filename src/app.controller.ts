@@ -1,23 +1,41 @@
 import { Controller, Get, Render, Req } from '@nestjs/common';
+import { AppService } from './app.service';
 import { Request } from 'express';
-import { fetchBreeds, fetchCats } from './helpers/api';
+// import { fetchBreeds, fetchCats } from './helpers/api';
 
 @Controller()
 export class AppController {
+  constructor(private readonly appService: AppService) {}
+
   @Get('catList')
-  async catList(@Req() req: Request) {
+  catList(@Req() req: Request) {
     const limit = req.query.limit || 12;
     const order = req.query.order || 'DESC';
     const page = req.query.page || 1;
     const selectedOptions = (req.query.breed_ids as string)?.split(',') || [];
 
-    return await fetchCats(limit, order, page, selectedOptions);
+    return this.appService.getCats(limit, order, page, selectedOptions);
   }
 
+  // @Get('catList')
+  // async catList(@Req() req: Request) {
+  //   const limit = req.query.limit || 12;
+  //   const order = req.query.order || 'DESC';
+  //   const page = req.query.page || 1;
+  //   const selectedOptions = (req.query.breed_ids as string)?.split(',') || [];
+
+  //   return await fetchCats(limit, order, page, selectedOptions);
+  // }
+
   @Get('breedList')
-  async breedList() {
-    return await fetchBreeds();
+  breedList() {
+    return this.appService.getBreeds();
   }
+
+  // @Get('breedList')
+  // async breedList() {
+  //   return await fetchBreeds();
+  // }
 
   @Get()
   @Render('index')
