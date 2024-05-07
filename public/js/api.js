@@ -1,4 +1,4 @@
-export async function fetchCats(breedIds = [], limit, order, page) {
+export async function fetchCats(limit, order, page, breedIds = []) {
   const url = new URL('http://localhost:3000/catList');
 
   url.searchParams.append('has_breeds', 1);

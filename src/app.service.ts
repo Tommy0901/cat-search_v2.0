@@ -8,18 +8,23 @@ export class AppService {
   private readonly cats = catList;
 
   getCats(limit, order, page, selectedOptions) {
-    // load cats from json
+    // load cats from json and filter cats based on selected options
     const filteredCats =
       selectedOptions.length > 0
         ? this.cats.filter((i) => selectedOptions.includes(i.id))
         : this.cats;
 
+    // calculate start and end indexes based on page and limit
+    const startIndex = limit * (page - 1);
+    const endIndex = limit * page;
+
+    // return array based on order
     return order === 'DESC'
       ? filteredCats
-          .slice(-limit * page, filteredCats.length - limit * (page - 1))
+          .slice(-endIndex, filteredCats.length - startIndex)
           .reverse()
       : order === 'ASC'
-        ? filteredCats.slice(limit * (page - 1), limit * page)
+        ? filteredCats.slice(startIndex, endIndex)
         : Array.from(
             { length: limit },
             () => filteredCats[Math.ceil(Math.random() * filteredCats.length)],

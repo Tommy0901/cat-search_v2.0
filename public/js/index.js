@@ -16,12 +16,11 @@ let limit = 12;
 let order = 'DESC';
 let page = 1;
 let selectedOptions = [];
-const catList = [];
 
-async function loadCats(breedIds = [], limit, order, page) {
+async function loadCats(limit, order, page, breedIds = []) {
   // 從api抓貓的資料
-  const list = await fetchCats(breedIds, limit, order, page);
-  catList.push(...list);
+  const list = await fetchCats(limit, order, page, breedIds);
+  // catList.push(...list);
 
   renderCats(list);
   if (list.length < limit) {
@@ -45,7 +44,7 @@ async function handleBreedOptionChange(e) {
   clearImages();
   enableLoadMoreButton();
   page = 1;
-  const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+  const hasNextPage = await loadCats(limit, order, page, selectedOptions);
   if (hasNextPage) {
     page++;
   }
@@ -65,14 +64,14 @@ function addListeners() {
     clearImages();
     enableLoadMoreButton();
     page = 1;
-    const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+    const hasNextPage = await loadCats(limit, order, page, selectedOptions);
     if (hasNextPage) {
       page++;
     }
   });
 
   addLoadMoreButtonListener(async () => {
-    const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+    const hasNextPage = await loadCats(limit, order, page, selectedOptions);
     if (hasNextPage) {
       page++;
     }
@@ -81,7 +80,7 @@ function addListeners() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   loadBreedOptions();
-  const hasNextPage = await loadCats(selectedOptions, limit, order, page);
+  const hasNextPage = await loadCats(limit, order, page, selectedOptions);
   if (hasNextPage) {
     page++;
   }
