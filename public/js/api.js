@@ -1,7 +1,9 @@
-export async function fetchCats(limit, order, page, breedIds = []) {
-  const url = new URL('http://localhost:3000/catList');
+const API_BASE_URL = 'http://localhost:3000';
 
-  url.searchParams.append('has_breeds', 1);
+export async function fetchCats(limit, order, page, breedIds = []) {
+  const url = new URL(`${API_BASE_URL}/catList`);
+
+  // url.searchParams.append('has_breeds', 1);
   url.searchParams.append('limit', limit);
   url.searchParams.append('order', order);
   url.searchParams.append('page', page);
@@ -19,7 +21,7 @@ export async function fetchCats(limit, order, page, breedIds = []) {
 
 export async function fetchBreeds() {
   try {
-    return (await fetch('http://localhost:3000/breedList')).json();
+    return (await fetch(`${API_BASE_URL}/breedList`)).json();
   } catch (err) {
     console.error('Oops! Something messed up...', err);
   }

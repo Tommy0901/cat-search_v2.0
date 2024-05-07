@@ -27,7 +27,7 @@ export class AppService {
         ? filteredCats.slice(startIndex, endIndex)
         : Array.from(
             { length: limit },
-            () => filteredCats[Math.ceil(Math.random() * filteredCats.length)],
+            () => filteredCats[Math.floor(Math.random() * filteredCats.length)],
           );
   }
 
