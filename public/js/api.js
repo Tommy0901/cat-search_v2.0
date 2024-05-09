@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://cat-search.vercel.app';
 
 export async function fetchCats(limit, order, page, breedIds = []) {
   const url = new URL(`${API_BASE_URL}/catList`);

@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import * as breedList from './config/initial/breed-list.json';
-import * as catList from './config/initial/cat-list.json';
+import * as path from 'path';
 
 @Injectable()
 export class AppService {
-  private readonly breeds = breedList;
-  private readonly cats = catList;
+  private readonly breeds = require(
+    path.resolve(__dirname, 'config', 'initial', 'breed-list.json'),
+  );
+  private readonly cats = require(
+    path.resolve(__dirname, 'config', 'initial', 'cat-list.json'),
+  );
 
   getCats(limit, order, page, selectedOptions) {
     // load cats from json and filter cats based on selected options

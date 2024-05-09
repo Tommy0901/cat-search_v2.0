@@ -18,5 +18,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": [
+    "src/**/*.ts", // 指定要包含的 TypeScript 檔案
+    "src/**/*.json" // 指定要包含在編譯中的 JSON 檔案
+  ]
 }
