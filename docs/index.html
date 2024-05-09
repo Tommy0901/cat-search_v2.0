@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins&amp;family=Roboto:wght@400;500;700&amp;display=swap"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <title>Cat Search</title>
+    <script type="module" src="js/index.js" defer="defer"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="app-title">Cat Search</h1>
+      <div class="select-container">
+        <div class="select-wrapper">
+          <button class="dropdown-button" id="dropdown-button">
+            請選擇品種
+          </button>
+          <div class="hidden multi-select-dropdown__options" id="options">
+            <div class="multi-select-dropdown__options__option">
+              <input type="checkbox" /><label
+                class="multi-select-dropdown__label"
+                >選項1
+              </label>
+            </div>
+            <div class="multi-select-dropdown__options__option">
+              <input type="checkbox" /><label
+                class="multi-select-dropdown__label"
+                >選項2
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="select-wrapper">
+          <select class="order-select" id="order-select" name="orderSelect">
+            <option value="DESC">由新到舊</option>
+            <option value="ASC">由舊到新</option>
+            <option value="RAND">隨機</option>
+          </select>
+        </div>
+      </div>
+      <div class="image-grid" id="image-grid">
+        <div class="col" id="col1"></div>
+        <div class="col" id="col2"></div>
+        <div class="col" id="col3"></div>
+      </div>
+      <button class="load-more-button" id="load-more">Load more...</button>
+    </div>
+    <div class="drawer" id="drawer">
+      <img
+        class="drawer__img"
+        id="drawer-image"
+        src="https://cdn2.thecatapi.com/images/7pCnjXd47.jpg"
+      />
+      <div class="drawer__name-origin">
+        <h3 class="drawer__name-origin__name" id="drawer-breed-name">
+          British Shorthair
+        </h3>
+        <div class="drawer__name-origin__origin">
+          <img src="assets/location_icon.svg" alt="" /><span
+            id="drawer-origin-text"
+            >United Kingdom</span
+          >
+        </div>
+      </div>
+      <div class="drawer__horizontal-sep"></div>
+      <div class="drawer__age-weight">
+        <div class="drawer__age-weight__data">
+          <p class="drawer__age-weight__number" id="drawer-weight">5-9</p>
+          <p class="drawer__age-weight__label">公斤</p>
+        </div>
+        <div class="drawer__age-weight__vertical-sep"></div>
+        <div class="drawer__age-weight__data">
+          <p class="drawer__age-weight__number" id="drawer-lifespan">12-17</p>
+          <p class="drawer__age-weight__label">壽命</p>
+        </div>
+      </div>
+      <div class="drawer__horizontal-sep"></div>
+      <div class="drawer__personality">
+        <p class="drawer__personality__title">性格</p>
+        <div class="drawer__personality__tags" id="temperament">
+          <span class="drawer__personality__tags__tag">親人</span
+          ><span class="drawer__personality__tags__tag">友善</span
+          ><span class="drawer__personality__tags__tag">活潑</span>
+        </div>
+      </div>
+      <div class="drawer__stats" id="drawer-stats">
+        <div class="drawer__stats__item">
+          <p class="drawer__stats__item__title" id="intelligence">智力</p>
+          <div class="drawer__stats__item__bar">
+            <div class="drawer__stats__item__bar__fill"></div>
+          </div>
+        </div>
+        <div class="drawer__stats__item">
+          <p class="drawer__stats__item__title" id="intelligence">親密度</p>
+          <div class="drawer__stats__item__bar">
+            <div class="drawer__stats__item__bar__fill"></div>
+          </div>
+        </div>
+        <div class="drawer__stats__item">
+          <p class="drawer__stats__item__title" id="intelligence">活力</p>
+          <div class="drawer__stats__item__bar">
+            <div class="drawer__stats__item__bar__fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
