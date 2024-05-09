@@ -12,7 +12,7 @@ async function bootstrap() {
 
   app.use(require('cors')());
 
-  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.useStaticAssets(join(__dirname, '..', 'docs'));
   // app.setBaseViewsDir(join(__dirname, '..', 'views'));
   // app.setViewEngine('pug');
 
