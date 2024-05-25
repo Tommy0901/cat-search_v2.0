@@ -24,8 +24,7 @@ export async function fetchCats(limit, order, page, breedIds = []) {
 
 export async function fetchBreeds() {
   try {
-    return (await axios.ge
-      t(`${process.env.API_URL}/V1/breeds`)).data;
+    return (await axios.get(`${process.env.API_URL}/V1/breeds`)).data;
   } catch (err) {
     console.error('Something bad happend...', err);
   }
